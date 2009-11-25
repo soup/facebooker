@@ -407,6 +407,12 @@ module Facebooker
     end            
     
     ##
+    # Revokes the specified extended permission
+    def revoke_permission(ext_perm)
+      session.post('facebook.auth.revokeExtendedPermission', {:perm=>ext_perm, :uid => uid}, false)
+    end
+    
+    ##
     # Convenience method to send email to the current user
     def send_email(subject, text=nil, fbml=nil)
       session.send_email([id], subject, text, fbml)

@@ -127,6 +127,12 @@ module Facebooker
     end
   end
 
+  class RevokeExtendedPermission < Parser#:nodoc:
+    def self.process(data)
+      booleanize(data)
+    end
+  end
+
   class CreateToken < Parser#:nodoc:
     def self.process(data)
       element('auth_createToken_response', data).content.strip
@@ -644,6 +650,7 @@ module Facebooker
 
   class Parser
     PARSERS = {
+      'facebook.auth.revokeExtendedPermission' => RevokeExtendedPermission,
       'facebook.auth.revokeAuthorization' => RevokeAuthorization,
       'facebook.auth.createToken' => CreateToken,
       'facebook.auth.getSession' => GetSession,
