@@ -146,7 +146,7 @@ module Facebooker
     # Prepares options for the stream.publish
     def prepare_publish_to_options(target, options)
       opts = {:uid          => self.id,
-              :target_id    => target.id,
+              :target_id    => target.is_a?(Integer) ? target : target.id,
               :message      => options[:message]} 
 
       if(attachment = options[:attachment] && Facebooker.json_encode(options[:attachment]))
